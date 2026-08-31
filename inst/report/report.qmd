@@ -1,0 +1,122 @@
+---
+title: "EPA Whole Effluent Toxicity analysis"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    theme: flatly
+execute:
+  echo: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+library(toxcalc)
+library(shinytoxcalc)
+analysis <- readRDS("analysis.rds")
+fit <- analysis$fit
+```
+
+*Produced by `shinytoxcalc` on `r format(Sys.time(), "%d %B %Y at %H:%M")`.*
+
+## What was analysed
+
+```{r}
+#| label: design
+fit$data
+```
+
+`r if (nrow(fit$excluded)) "The following concentrations were excluded from the hypothesis test, and are retained for point estimation as section 9.5.2 requires." else ""`
+
+```{r}
+#| label: excluded
+#| eval: !expr nrow(fit$excluded) > 0
+knitr::kable(fit$excluded)
+```
+
+## How the test was chosen
+
+The table below is the record of every branch point of the EPA flowchart: the
+question asked, the statistic that answered it, the consequence, and the
+section of the manual that justifies it. A reviewer can check this line by line
+against the manual.
+
+```{r}
+#| label: trail
+trail <- decisions(fit)
+knitr::kable(
+  trail[, c("step", "question", "outcome", "reference")],
+  col.names = c("Step", "Question", "Outcome", "Manual section")
+)
+```
+
+```{r}
+#| label: override
+#| eval: !expr isTRUE(fit$overridden)
+```
+
+`r if (isTRUE(fit$overridden)) paste0("**The selected test was overridden.** The flowchart selected ", fit$selected, ". This result is not the analysis the EPA manual prescribes for these data.") else ""`
+
+## Endpoints
+
+```{r}
+#| label: endpoints
+out <- as.data.frame(fit)
+numeric <- vapply(out, is.numeric, logical(1))
+out[numeric] <- lapply(out[numeric], signif, digits = 5)
+knitr::kable(out)
+```
+
+## Concentration-response
+
+```{r}
+#| label: plot
+#| fig-height: 4
+#| fig-width: 7
+plot_response(fit)
+```
+
+## Comparisons
+
+```{r}
+#| label: comparisons
+comparisons <- fit$comparison$comparisons
+numeric <- vapply(comparisons, is.numeric, logical(1))
+comparisons[numeric] <- lapply(comparisons[numeric], signif, digits = 5)
+knitr::kable(comparisons)
+```
+
+## Reproducing this analysis
+
+Running the following in R gives exactly the result above, without this
+application.
+
+```{r}
+#| label: code
+#| echo: false
+#| comment: ""
+cat(analysis$code, sep = "\n")
+```
+
+## Provenance
+
+```{r}
+#| label: provenance
+knitr::kable(
+  data.frame(
+    Item = c("toxcalc", "shinytoxcalc", "R", "Flowchart"),
+    Value = c(
+      as.character(utils::packageVersion("toxcalc")),
+      as.character(utils::packageVersion("shinytoxcalc")),
+      R.version.string,
+      fit$flowchart
+    )
+  )
+)
+```
+
+The `toxcalc` package targets the EPA method manuals rather than the ToxCalc
+software, and documents every point at which the manuals are ambiguous or
+internally inconsistent. See its vignette, *Recreating ToxCalc: methods and
+decisions*.

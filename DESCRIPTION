@@ -1,0 +1,39 @@
+Package: shinytoxcalc
+Title: A Graphical Interface to the toxcalc EPA WET Methods
+Version: 0.0.0.9000
+Authors@R:
+    person("Rebecca", "Fisher", , "r.fisher@aims.gov.au", role = c("aut", "cre"))
+Description: A Shiny application providing a point-and-click interface to the
+    'toxcalc' package, which implements the US EPA Whole Effluent Toxicity
+    statistical methods. Data are entered by pasting, by uploading a
+    comma-separated file, or by uploading a spreadsheet laid out to the
+    supplied template. Results are presented as the decision trail that
+    justifies the selected test, alongside the endpoints and a
+    concentration-response plot, and can be exported as a report, a
+    spreadsheet, or the R code that reproduces the analysis.
+License: GPL (>= 2)
+URL: https://github.com/beckyfisher/shinytoxcalc
+BugReports: https://github.com/beckyfisher/shinytoxcalc/issues
+Depends:
+    R (>= 4.1)
+Imports:
+    bslib,
+    chk (>= 0.10.0),
+    DT,
+    ggplot2,
+    openxlsx,
+    readxl,
+    shiny,
+    toxcalc,
+    tools,
+    utils
+Suggests:
+    quarto,
+    testthat (>= 3.0.0),
+    withr
+Remotes:
+    beckyfisher/toxcalc
+Config/roxygen2/version: 8.0.0.9000
+Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)

@@ -1,0 +1,95 @@
+# shinytoxcalc
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![license](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-lightgrey.svg)](https://choosealicense.com/)
+<!-- badges: end -->
+
+A point-and-click interface to [`toxcalc`](https://github.com/beckyfisher/toxcalc),
+which implements the US EPA Whole Effluent Toxicity statistical methods.
+
+```r
+shinytoxcalc::run_app()
+```
+
+## What it is for
+
+ToxCalc, the software this recreates, was an Excel plugin, because in the 1990s
+that was the only way to reach a laboratory desktop. This is a Shiny
+application instead, for three reasons.
+
+An Excel add-in cannot call R, so it would mean reimplementing the statistics
+and discarding the validation that went with them. It would be Windows-only and
+awkward to install. And most importantly a spreadsheet keeps no record of what
+was run, which would throw away the one thing that distinguishes `toxcalc` from
+calling the tests by hand.
+
+The Excel *workflow* is kept without the add-in. Data can be pasted straight
+out of a spreadsheet, or uploaded as `.xlsx`, and a template workbook is
+provided with the expected layout and a worked example already filled in.
+
+## What it does
+
+Four steps, in the order a laboratory works.
+
+1. **Data.** Paste from a spreadsheet, upload a file, or open one of the EPA
+   worked examples. The columns are guessed and every guess can be overridden.
+2. **Analysis.** Set the two significance levels, choose whether to report a
+   point estimate as well, apply the EPA variability criteria, exclude
+   concentrations, or override the selected test.
+3. **Results.** The decision trail is the headline: every branch point of the
+   flowchart, the statistic that answered it, and the manual section that
+   justifies it, above the endpoints, a concentration-response plot and the
+   per-concentration comparisons.
+4. **Reproduce.** The R code that gives the same result without this
+   application.
+
+Results export as a rendered report, a spreadsheet, or an R script.
+
+## The point about reproducibility
+
+A result obtained only by clicking cannot be checked by a reviewer. A
+laboratory cannot put it in a submission and expect anyone to verify it years
+later.
+
+So the application always shows the R code that reproduces what it is
+displaying, and the test suite asserts that the code it writes actually runs
+and actually gives the same answer. That is what makes a graphical interface
+acceptable for regulatory work rather than merely convenient.
+
+## Where the data goes
+
+Nowhere. `run_app()` runs the application on the machine it is called from, so
+effluent monitoring results a laboratory may not be permitted to upload stay
+where they are. Hosting it is possible, but that is a decision with a data
+governance dimension and is not the default.
+
+## Testing
+
+The logic is kept in ordinary functions — `read_input()`, `read_pasted()`,
+`guess_columns()`, `example_data()`, `reproduce_code()`, `plot_response()` —
+so that most of it is testable without a browser. The reactive layer on top is
+driven headlessly by `shiny::testServer()`, which covers the path a user
+actually takes: choose data, map the columns, press run.
+
+```r
+devtools::test()
+```
+
+## Installation
+
+```r
+if (!requireNamespace("remotes")) {
+  install.packages("remotes")
+}
+remotes::install_github("beckyfisher/toxcalc")
+remotes::install_github("beckyfisher/shinytoxcalc")
+```
+
+## Fidelity
+
+This package presents the results; it does not compute them. Every statistic
+comes from `toxcalc`, which targets the EPA method manuals rather than the
+ToxCalc software, and which documents each point at which those manuals are
+ambiguous or internally inconsistent. See its vignette, *Recreating ToxCalc:
+methods and decisions*.
