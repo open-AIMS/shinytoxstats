@@ -26,13 +26,13 @@ test_that("the template's own sheets can be read back and analysed", {
 
   measured <- read_input(path, sheet = "measured endpoint")
   expect_equal(guess_columns(measured)$conc, "conc")
-  fit <- toxcalc::toxcalc(measured, response = "response")
+  fit <- toxstats::tox_test(measured, response = "response")
   expect_equal(fit$noec, 128)
 
   counted <- read_input(path, sheet = "counted endpoint")
   expect_equal(guess_columns(counted)$n_exposed, "n_exposed")
   expect_no_error(
-    toxcalc::toxcalc(
+    toxstats::tox_test(
       counted,
       response = "response",
       n_exposed = "n_exposed",
@@ -53,11 +53,11 @@ test_that("the settings are split into the arguments each function takes", {
     test = NULL
   )
 
-  expect_false("alpha" %in% names(shinytoxcalc:::data_arguments(settings)))
-  expect_true("alpha" %in% names(shinytoxcalc:::analysis_arguments(settings)))
+  expect_false("alpha" %in% names(shinytoxstats:::data_arguments(settings)))
+  expect_true("alpha" %in% names(shinytoxstats:::analysis_arguments(settings)))
   # NULL entries are dropped rather than passed on as NULL.
   expect_false(
-    "replicate" %in% names(shinytoxcalc:::analysis_arguments(settings))
+    "replicate" %in% names(shinytoxstats:::analysis_arguments(settings))
   )
-  expect_false("test" %in% names(shinytoxcalc:::analysis_arguments(settings)))
+  expect_false("test" %in% names(shinytoxstats:::analysis_arguments(settings)))
 })

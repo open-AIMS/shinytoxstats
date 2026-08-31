@@ -96,10 +96,10 @@ test_that("guess_columns finds the obvious names", {
 })
 
 test_that("guess_columns handles the EPA datasets it will meet", {
-  expect_equal(guess_columns(toxcalc::fathead_c1)$conc, "conc")
-  expect_equal(guess_columns(toxcalc::fathead_c1)$response, "weight")
-  expect_equal(guess_columns(toxcalc::ceriodaphnia_m1)$response, "young")
-  expect_equal(guess_columns(toxcalc::ceriodaphnia_g2)$n_exposed, "exposed")
+  expect_equal(guess_columns(toxstats::fathead_c1)$conc, "conc")
+  expect_equal(guess_columns(toxstats::fathead_c1)$response, "weight")
+  expect_equal(guess_columns(toxstats::ceriodaphnia_m1)$response, "young")
+  expect_equal(guess_columns(toxstats::ceriodaphnia_g2)$n_exposed, "exposed")
 })
 
 test_that("guess_columns falls back to the first other numeric column", {
@@ -119,7 +119,7 @@ test_that("guess_columns returns NULL rather than guessing wildly", {
 
 test_that("example_data fetches every dataset the interface offers", {
   # A dataset shipped with LazyData is not in the package namespace, so
-  # get(name, envir = asNamespace("toxcalc")) fails for all of them. That was
+  # get(name, envir = asNamespace("toxstats")) fails for all of them. That was
   # a real bug: it broke every worked-example path in the application.
   for (name in unname(example_choices())) {
     value <- example_data(name)
@@ -134,5 +134,5 @@ test_that("example_data reports an unknown name", {
 
 test_that("the namespace route that was tried first does not work", {
   # Kept as a test so the fix is not undone by someone who assumes it should.
-  expect_error(get("fathead_c1", envir = asNamespace("toxcalc")))
+  expect_error(get("fathead_c1", envir = asNamespace("toxstats")))
 })

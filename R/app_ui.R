@@ -4,7 +4,7 @@
 #' @noRd
 app_ui <- function() {
   bslib::page_navbar(
-    title = "toxcalc",
+    title = "toxstats",
     theme = bslib::bs_theme(version = 5, preset = "flatly"),
     id = "nav",
 
@@ -103,7 +103,7 @@ app_ui <- function() {
           shiny::selectInput(
             "pmsd_bounds",
             "Variability criteria (EPA Table 6)",
-            choices = c("none", toxcalc::epa_pmsd_bounds$id)
+            choices = c("none", toxstats::epa_pmsd_bounds$id)
           ),
           shiny::uiOutput("exclude_control"),
           shiny::hr(),
@@ -164,7 +164,7 @@ app_ui <- function() {
       shiny::tags$a(
         shiny::icon("book"),
         "Method notes",
-        href = "https://github.com/beckyfisher/toxcalc",
+        href = "https://github.com/beckyfisher/toxstats",
         target = "_blank"
       )
     )

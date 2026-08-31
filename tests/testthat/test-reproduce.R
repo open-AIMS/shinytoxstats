@@ -19,7 +19,7 @@ test_that("the generated code runs and reproduces the analysis", {
   # clean environment and compare with the interface's own result.
   directory <- withr::local_tempdir()
   withr::local_dir(directory)
-  utils::write.csv(toxcalc::fathead_c1, "fathead_c1.csv", row.names = FALSE)
+  utils::write.csv(toxstats::fathead_c1, "fathead_c1.csv", row.names = FALSE)
 
   environment <- new.env()
   # The generated code prints a summary; capture it so the test output stays
@@ -29,8 +29,8 @@ test_that("the generated code runs and reproduces the analysis", {
   )
 
   expected <- do.call(
-    toxcalc::toxcalc,
-    c(list(toxcalc::fathead_c1), settings)
+    toxstats::tox_test,
+    c(list(toxstats::fathead_c1), settings)
   )
   expect_equal(environment$fit$noec, expected$noec)
   expect_equal(environment$fit$loec, expected$loec)
@@ -47,7 +47,7 @@ test_that("only non-default arguments are written out", {
   expect_false(grepl("conc =", code))
   expect_false(grepl("response =", code))
   expect_false(grepl("alpha =", code))
-  expect_true(grepl("toxcalc\\(", code))
+  expect_true(grepl("tox_test\\(", code))
 })
 
 test_that("choices that differ from the defaults do appear", {
@@ -90,7 +90,7 @@ test_that("the reader matches the file type", {
 test_that("the code shows how to get each part of the result", {
   code <- paste(reproduce_code("a.csv", list()), collapse = "\n")
 
-  expect_true(grepl("library\\(toxcalc\\)", code))
+  expect_true(grepl("library\\(toxstats\\)", code))
   expect_true(grepl("summary\\(fit\\)", code))
   expect_true(grepl("as.data.frame\\(fit\\)", code))
   expect_true(grepl("decisions\\(fit\\)", code))

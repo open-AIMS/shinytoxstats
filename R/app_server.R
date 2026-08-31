@@ -180,7 +180,7 @@ app_server <- function(input, output, session) {
     ))
     shiny::req(input$conc, input$response, input$control)
     print(do.call(
-      toxcalc::toxcalc_data,
+      toxstats::tox_data,
       c(
         list(value),
         data_arguments(
@@ -202,7 +202,7 @@ app_server <- function(input, output, session) {
     result <- withCallingHandlers(
       tryCatch(
         do.call(
-          toxcalc::toxcalc,
+          toxstats::tox_test,
           c(list(value), analysis_arguments(settings()))
         ),
         error = function(e) structure(conditionMessage(e), class = "run_error")
@@ -302,7 +302,7 @@ app_server <- function(input, output, session) {
   code <- shiny::reactive({
     name <- switch(
       input$source,
-      example = paste0("toxcalc::", input$example %||% "data"),
+      example = paste0("toxstats::", input$example %||% "data"),
       file = if (is.null(input$upload)) "data.csv" else input$upload$name,
       paste = "pasted.csv"
     )
@@ -312,19 +312,19 @@ app_server <- function(input, output, session) {
   output$code <- shiny::renderText(paste(code(), collapse = "\n"))
 
   output$download_code <- shiny::downloadHandler(
-    filename = function() "toxcalc-analysis.R",
+    filename = function() "toxstats-analysis.R",
     content = function(file) writeLines(code(), file)
   )
 
   output$download_xlsx <- shiny::downloadHandler(
-    filename = function() "toxcalc-results.xlsx",
+    filename = function() "toxstats-results.xlsx",
     content = function(file) {
       outcome <- fit()
       openxlsx::write.xlsx(
         list(
           endpoints = as.data.frame(outcome$result),
           comparisons = outcome$result$comparison$comparisons,
-          decisions = toxcalc::decisions(outcome$result),
+          decisions = toxstats::decisions(outcome$result),
           data = outcome$result$data$replicates
         ),
         file
@@ -333,12 +333,12 @@ app_server <- function(input, output, session) {
   )
 
   output$download_report <- shiny::downloadHandler(
-    filename = function() "toxcalc-report.html",
+    filename = function() "toxstats-report.html",
     content = function(file) render_report(fit()$result, code(), file)
   )
 
   output$template <- shiny::downloadHandler(
-    filename = function() "toxcalc-template.xlsx",
+    filename = function() "toxstats-template.xlsx",
     content = function(file) write_template(file)
   )
 }

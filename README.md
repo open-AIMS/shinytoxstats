@@ -1,15 +1,15 @@
-# shinytoxcalc
+# shinytoxstats
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![license](https://img.shields.io/badge/license-GPL%20%28%3E=%203%29-lightgrey.svg)](https://choosealicense.com/)
 <!-- badges: end -->
 
-A point-and-click interface to [`toxcalc`](https://github.com/beckyfisher/toxcalc),
+A point-and-click interface to [`toxstats`](https://github.com/beckyfisher/toxstats),
 which implements the US EPA Whole Effluent Toxicity statistical methods.
 
 ```r
-shinytoxcalc::run_app()
+shinytoxstats::run_app()
 ```
 
 ## What it is for
@@ -21,7 +21,7 @@ application instead, for three reasons.
 An Excel add-in cannot call R, so it would mean reimplementing the statistics
 and discarding the validation that went with them. It would be Windows-only and
 awkward to install. And most importantly a spreadsheet keeps no record of what
-was run, which would throw away the one thing that distinguishes `toxcalc` from
+was run, which would throw away the one thing that distinguishes `toxstats` from
 calling the tests by hand.
 
 The Excel *workflow* is kept without the add-in. Data can be pasted straight
@@ -82,14 +82,14 @@ devtools::test()
 if (!requireNamespace("remotes")) {
   install.packages("remotes")
 }
-remotes::install_github("beckyfisher/toxcalc")
-remotes::install_github("beckyfisher/shinytoxcalc")
+remotes::install_github("beckyfisher/toxstats")
+remotes::install_github("beckyfisher/shinytoxstats")
 ```
 
 ## Fidelity
 
 This package presents the results; it does not compute them. Every statistic
-comes from `toxcalc`, which targets the EPA method manuals rather than the
+comes from `toxstats`, which targets the EPA method manuals rather than the
 ToxCalc software, and which documents each point at which those manuals are
 ambiguous or internally inconsistent. See its vignette, *Recreating ToxCalc:
 methods and decisions*.

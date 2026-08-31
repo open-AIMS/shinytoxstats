@@ -7,7 +7,7 @@
 example_data(name)
 }
 \arguments{
-\item{name}{Name of a dataset in the \code{toxcalc} package. A string.}
+\item{name}{Name of a dataset in the \code{toxstats} package. A string.}
 }
 \value{
 A data frame.
@@ -16,7 +16,7 @@ A data frame.
 Fetch a worked-example dataset by name
 }
 \details{
-\code{get(name, envir = asNamespace("toxcalc"))} does not work here. A dataset
+\code{get(name, envir = asNamespace("toxstats"))} does not work here. A dataset
 shipped with \code{LazyData: true} lives in the package's lazy-data environment,
 not in its namespace, so that call fails with "object not found" for every
 dataset in the package. \code{utils::data()} into a fresh environment is the

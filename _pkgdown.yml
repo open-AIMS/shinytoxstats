@@ -1,4 +1,4 @@
-url: https://beckyfisher.github.io/shinytoxcalc/
+url: https://beckyfisher.github.io/shinytoxstats/
 
 template:
   bootstrap: 5
@@ -31,4 +31,4 @@ reference:
 
   - title: internal
     contents:
-      - shinytoxcalc-package
+      - shinytoxstats-package

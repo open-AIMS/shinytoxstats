@@ -12,13 +12,13 @@ execute:
 
 ```{r}
 #| label: setup
-library(toxcalc)
-library(shinytoxcalc)
+library(toxstats)
+library(shinytoxstats)
 analysis <- readRDS("analysis.rds")
 fit <- analysis$fit
 ```
 
-*Produced by `shinytoxcalc` on `r format(Sys.time(), "%d %B %Y at %H:%M")`.*
+*Produced by `shinytoxstats` on `r format(Sys.time(), "%d %B %Y at %H:%M")`.*
 
 ## What was analysed
 
@@ -105,10 +105,10 @@ cat(analysis$code, sep = "\n")
 #| label: provenance
 knitr::kable(
   data.frame(
-    Item = c("toxcalc", "shinytoxcalc", "R", "Flowchart"),
+    Item = c("toxstats", "shinytoxstats", "R", "Flowchart"),
     Value = c(
-      as.character(utils::packageVersion("toxcalc")),
-      as.character(utils::packageVersion("shinytoxcalc")),
+      as.character(utils::packageVersion("toxstats")),
+      as.character(utils::packageVersion("shinytoxstats")),
       R.version.string,
       fit$flowchart
     )
@@ -116,7 +116,7 @@ knitr::kable(
 )
 ```
 
-The `toxcalc` package targets the EPA method manuals rather than the ToxCalc
+The `toxstats` package targets the EPA method manuals rather than the ToxCalc
 software, and documents every point at which the manuals are ambiguous or
 internally inconsistent. See its vignette, *Recreating ToxCalc: methods and
 decisions*.

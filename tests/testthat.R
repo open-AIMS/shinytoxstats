@@ -1,4 +1,4 @@
 library(testthat)
-library(shinytoxcalc)
+library(shinytoxstats)
 
-test_check("shinytoxcalc")
+test_check("shinytoxstats")

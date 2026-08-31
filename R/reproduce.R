@@ -82,11 +82,11 @@ reproduce_code <- function(file, settings) {
   }
 
   c(
-    "library(toxcalc)",
+    "library(toxstats)",
     "",
     paste0("data <- ", reader),
     "",
-    "fit <- toxcalc(",
+    "fit <- tox_test(",
     "  data,",
     if (length(arguments)) paste0(arguments, collapse = ",\n") else NULL,
     ")",

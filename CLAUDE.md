@@ -1,4 +1,4 @@
-# Project: shinytoxcalc
+# Project: shinytoxstats
 
 This file provides **project-specific context only**. For Claude: read the
 `CLAUDE.md` in the parent directory first; this file takes precedence where
@@ -15,9 +15,9 @@ structure, testthat, roxygen2.
 
 ## 2. What This Repo Does
 
-A point-and-click interface to the `toxcalc` package, which implements the US
+A point-and-click interface to the `toxstats` package, which implements the US
 EPA Whole Effluent Toxicity statistical methods. It presents results; it
-computes nothing. Every statistic comes from `toxcalc`.
+computes nothing. Every statistic comes from `toxstats`.
 
 The original ToxCalc was an Excel plugin. This is not, and the reasoning is in
 the README: an add-in cannot call R, would be Windows-only, and a spreadsheet
@@ -39,8 +39,8 @@ code that runs and gives the same answer as the interface displayed. The test
 suite asserts both by executing it. A change that breaks that has broken the
 package's reason for existing, not a feature of it.
 
-**Never compute a statistic here.** If something is needed that `toxcalc` does
-not provide, it belongs in `toxcalc`, with the validation that comes with it.
+**Never compute a statistic here.** If something is needed that `toxstats` does
+not provide, it belongs in `toxstats`, with the validation that comes with it.
 
 **Two traps already hit, recorded so they are not hit again.**
 
@@ -57,7 +57,7 @@ problem rather than a test problem.
 
 ## 4. Package Dependencies in Scope
 
-Defined in `DESCRIPTION`. `toxcalc` comes from GitHub, declared under
+Defined in `DESCRIPTION`. `toxstats` comes from GitHub, declared under
 `Remotes`.
 
 ---

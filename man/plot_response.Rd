@@ -7,7 +7,7 @@
 plot_response(x, response_label = NULL)
 }
 \arguments{
-\item{x}{A \code{toxcalc} object, as returned by \code{\link[toxcalc:toxcalc]{toxcalc::toxcalc()}}.}
+\item{x}{A \code{tox_test} object, as returned by \code{\link[toxstats:tox_test]{toxstats::tox_test()}}.}
 
 \item{response_label}{Label for the vertical axis. A string, or \code{NULL} to
 use a generic one.}
@@ -31,7 +31,7 @@ that a reader can see they were measured and can see that they did not
 contribute to the no-effect concentration.
 }
 \examples{
-fit <- toxcalc::toxcalc(toxcalc::fathead_c1, response = "weight")
+fit <- toxstats::tox_test(toxstats::fathead_c1, response = "weight")
 plot_response(fit, response_label = "Larval weight (mg)")
 
 }

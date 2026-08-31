@@ -14,20 +14,20 @@
 #' that a reader can see they were measured and can see that they did not
 #' contribute to the no-effect concentration.
 #'
-#' @param x A `toxcalc` object, as returned by [toxcalc::toxcalc()].
+#' @param x A `tox_test` object, as returned by [toxstats::tox_test()].
 #' @param response_label Label for the vertical axis. A string, or `NULL` to
 #'   use a generic one.
 #'
 #' @return A `ggplot` object.
 #'
 #' @examples
-#' fit <- toxcalc::toxcalc(toxcalc::fathead_c1, response = "weight")
+#' fit <- toxstats::tox_test(toxstats::fathead_c1, response = "weight")
 #' plot_response(fit, response_label = "Larval weight (mg)")
 #'
 #' @export
 plot_response <- function(x, response_label = NULL) {
-  if (!inherits(x, "toxcalc")) {
-    chk::abort_chk("`x` must be a `toxcalc` object.")
+  if (!inherits(x, "tox_test")) {
+    chk::abort_chk("`x` must be a `tox_test` object.")
   }
   chk::chk_null_or(response_label, vld = chk::vld_string)
 
@@ -100,7 +100,7 @@ plot_response <- function(x, response_label = NULL) {
 
 #' Marker layers for the no- and lowest-observed-effect concentrations
 #'
-#' @param x A `toxcalc` object.
+#' @param x A `tox_test` object.
 #' @param levels The concentration levels, in order.
 #' @return A list of ggplot layers, possibly empty.
 #' @noRd

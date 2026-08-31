@@ -157,7 +157,7 @@ test_that("pasted data is read and analysed", {
     c(
       "conc\tweight",
       apply(
-        toxcalc::fathead_c1[, c("conc", "weight")],
+        toxstats::fathead_c1[, c("conc", "weight")],
         1,
         function(row) paste(row, collapse = "\t")
       )

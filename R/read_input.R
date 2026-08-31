@@ -156,13 +156,13 @@ guess_columns <- function(data) {
 #' Fetch a worked-example dataset by name
 #'
 #' @details
-#' `get(name, envir = asNamespace("toxcalc"))` does not work here. A dataset
+#' `get(name, envir = asNamespace("toxstats"))` does not work here. A dataset
 #' shipped with `LazyData: true` lives in the package's lazy-data environment,
 #' not in its namespace, so that call fails with "object not found" for every
 #' dataset in the package. `utils::data()` into a fresh environment is the
 #' route that works.
 #'
-#' @param name Name of a dataset in the `toxcalc` package. A string.
+#' @param name Name of a dataset in the `toxstats` package. A string.
 #'
 #' @return A data frame.
 #'
@@ -177,13 +177,13 @@ example_data <- function(name) {
   # utils::data() warns rather than errors on an unknown name, and the warning
   # says less than the message raised below, so it is muffled.
   loaded <- suppressWarnings(
-    utils::data(list = name, package = "toxcalc", envir = environment)
+    utils::data(list = name, package = "toxstats", envir = environment)
   )
   if (!name %in% loaded || is.null(environment[[name]])) {
     chk::abort_chk(
       "There is no dataset called \"",
       name,
-      "\" in the toxcalc package."
+      "\" in the toxstats package."
     )
   }
   environment[[name]]

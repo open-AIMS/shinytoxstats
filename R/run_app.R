@@ -1,4 +1,4 @@
-#' Launch the toxcalc interface
+#' Launch the toxstats interface
 #'
 #' Starts the Shiny application. Running it locally keeps the data on the
 #' machine it is already on, which matters when the data are effluent
@@ -39,7 +39,7 @@ run_app <- function(...) {
 write_template <- function(path) {
   chk::chk_string(path)
 
-  measured <- toxcalc::fathead_c1
+  measured <- toxstats::fathead_c1
   names(measured) <- c("conc", "replicate", "response")
 
   counted <- data.frame(
@@ -79,7 +79,7 @@ write_template <- function(path) {
 
 #' Render the report
 #'
-#' @param fit A `toxcalc` object.
+#' @param fit A `tox_test` object.
 #' @param code The reproducible code, as a character vector.
 #' @param file Where to write the rendered report.
 #' @return `file`, invisibly.
@@ -92,8 +92,8 @@ render_report <- function(fit, code, file) {
     )
   }
 
-  source <- system.file("report", "report.qmd", package = "shinytoxcalc")
-  directory <- tempfile("toxcalc-report")
+  source <- system.file("report", "report.qmd", package = "shinytoxstats")
+  directory <- tempfile("toxstats-report")
   dir.create(directory)
   on.exit(unlink(directory, recursive = TRUE), add = TRUE)
 
