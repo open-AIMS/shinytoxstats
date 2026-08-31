@@ -1,0 +1,34 @@
+url: https://beckyfisher.github.io/shinytoxcalc/
+
+template:
+  bootstrap: 5
+
+development:
+  mode: auto
+
+reference:
+  - title: Running the interface
+    contents:
+      - run_app
+      - write_template
+
+  - title: Reading data
+    desc: >
+      The functions that stand between a laboratory's file and the analysis.
+      They are ordinary functions rather than reactive code so that they can be
+      tested without a browser.
+    contents:
+      - read_input
+      - read_pasted
+      - guess_columns
+      - example_data
+      - example_choices
+
+  - title: Presenting results
+    contents:
+      - plot_response
+      - reproduce_code
+
+  - title: internal
+    contents:
+      - shinytoxcalc-package

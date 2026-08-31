@@ -11,8 +11,9 @@ Description: A Shiny application providing a point-and-click interface to the
     justifies the selected test, alongside the endpoints and a
     concentration-response plot, and can be exported as a report, a
     spreadsheet, or the R code that reproduces the analysis.
-License: GPL (>= 2)
-URL: https://github.com/beckyfisher/shinytoxcalc
+License: GPL (>= 3)
+URL: https://beckyfisher.github.io/shinytoxcalc,
+    https://github.com/beckyfisher/shinytoxcalc
 BugReports: https://github.com/beckyfisher/shinytoxcalc/issues
 Depends:
     R (>= 4.1)

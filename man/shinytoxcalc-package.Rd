@@ -11,6 +11,7 @@ A Shiny application providing a point-and-click interface to the 'toxcalc' packa
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://beckyfisher.github.io/shinytoxcalc}
   \item \url{https://github.com/beckyfisher/shinytoxcalc}
   \item Report bugs at \url{https://github.com/beckyfisher/shinytoxcalc/issues}
 }

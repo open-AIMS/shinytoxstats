@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![license](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-lightgrey.svg)](https://choosealicense.com/)
+[![license](https://img.shields.io/badge/license-GPL%20%28%3E=%203%29-lightgrey.svg)](https://choosealicense.com/)
 <!-- badges: end -->
 
 A point-and-click interface to [`toxcalc`](https://github.com/beckyfisher/toxcalc),
@@ -93,3 +93,16 @@ comes from `toxcalc`, which targets the EPA method manuals rather than the
 ToxCalc software, and which documents each point at which those manuals are
 ambiguous or internally inconsistent. See its vignette, *Recreating ToxCalc:
 methods and decisions*.
+
+## Standing and licence
+
+This package is **not** produced, endorsed, validated or reviewed by the US
+Environmental Protection Agency, and it is not affiliated with Tidepool
+Scientific or with the ToxCalc software it recreates. It implements the methods
+described in the EPA method manuals, which are US Government works, and it is
+offered without warranty of any kind. A laboratory remains responsible for
+satisfying itself, and its regulator, that an analysis is fit for the use it is
+put to.
+
+Licensed GPL (>= 3), which is GPL rather than a more permissive licence because
+`shiny` is GPL-3.

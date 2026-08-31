@@ -12,3 +12,4 @@
 ^CLAUDE\.md$
 ^air\.toml$
 ^\.editorconfig$
+^_pkgdown\.yml$
