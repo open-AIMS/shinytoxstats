@@ -20,6 +20,19 @@ fit <- analysis$fit
 
 *Produced by `shinytoxstats` on `r format(Sys.time(), "%d %B %Y at %H:%M")`.*
 
+::: {.callout-warning appearance="simple"}
+## For testing and validation only
+
+This report was produced by `shinytoxstats` and `toxstats`, which were written
+with generative AI. **It must not be used to derive toxicity estimates for
+regulatory submission, compliance reporting, or any other official purpose.**
+
+The methods are checked against the worked examples printed in the EPA method
+manuals. That is not independent verification, and it does not cover the paths
+no manual exercises. For a result that will be relied on, use software your
+regulator accepts.
+:::
+
 ## What was analysed
 
 ```{r}

@@ -7,6 +7,7 @@ app_ui <- function() {
     title = "toxstats",
     theme = bslib::bs_theme(version = 5, preset = "flatly"),
     id = "nav",
+    header = disclaimer_banner(),
 
     bslib::nav_panel(
       title = "1. Data",

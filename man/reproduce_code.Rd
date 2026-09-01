@@ -23,12 +23,14 @@ Returns the calls a user would type to obtain, outside this application,
 exactly the result it is showing them.
 }
 \details{
-This is the feature that makes a point-and-click interface acceptable for
-regulatory work. A result that can only be obtained by clicking through an
-application is not reproducible, and a laboratory cannot put it in a
-submission and expect a reviewer to be able to check it. A result
-accompanied by four lines of R can be rerun by anyone, years later, without
-the application.
+A result that can only be obtained by clicking through an application is
+not reproducible: nobody can check it, and nobody can rerun it once the
+application has moved on. A result accompanied by four lines of R can be
+rerun by anyone, years later, without the application.
+
+The script carries the package disclaimer as a header comment, because it
+is the artefact most likely to be read by someone who never saw the
+interface.
 
 Only arguments that differ from the defaults are written out, so the code
 stays readable and shows the choices actually made rather than restating

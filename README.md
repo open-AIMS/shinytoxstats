@@ -8,6 +8,21 @@
 A point-and-click interface to [`toxstats`](https://github.com/open-AIMS/toxstats),
 which implements the US EPA Whole Effluent Toxicity statistical methods.
 
+## Intended use
+
+**This package and `toxstats` were written with generative AI, and are for
+testing and validation purposes only. They must not be used to derive toxicity
+estimates for regulatory submission, compliance reporting, or any other
+official purpose.**
+
+The methods are checked against the worked examples printed in the EPA method
+manuals, and those checks are in the test suite. That is not independent
+verification, and it does not cover the paths no manual exercises. For a result
+that will be relied on, use software your regulator accepts.
+
+The disclaimer appears on every tab of the interface, and on both artefacts
+that leave it: the rendered report and the generated R script.
+
 ```r
 shinytoxstats::run_app()
 ```
@@ -48,14 +63,14 @@ Results export as a rendered report, a spreadsheet, or an R script.
 
 ## The point about reproducibility
 
-A result obtained only by clicking cannot be checked by a reviewer. A
-laboratory cannot put it in a submission and expect anyone to verify it years
-later.
+A result obtained only by clicking cannot be checked by anyone else, and
+cannot be rerun once the application has moved on.
 
 So the application always shows the R code that reproduces what it is
 displaying, and the test suite asserts that the code it writes actually runs
-and actually gives the same answer. That is what makes a graphical interface
-acceptable for regulatory work rather than merely convenient.
+and actually gives the same answer. A graphical interface that cannot hand back
+the code behind its output is not worth using for anything that has to be
+checked.
 
 ## Where the data goes
 
@@ -102,7 +117,7 @@ Scientific or with the ToxCalc software it recreates. It implements the methods
 described in the EPA method manuals, which are US Government works, and it is
 offered without warranty of any kind. A laboratory remains responsible for
 satisfying itself, and its regulator, that an analysis is fit for the use it is
-put to.
+put to. See **Intended use** above, which restricts that further.
 
 Licensed GPL (>= 3), which is GPL rather than a more permissive licence because
 `shiny` is GPL-3.

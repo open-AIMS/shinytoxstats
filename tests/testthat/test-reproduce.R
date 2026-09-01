@@ -95,3 +95,19 @@ test_that("the code shows how to get each part of the result", {
   expect_true(grepl("as.data.frame\\(fit\\)", code))
   expect_true(grepl("decisions\\(fit\\)", code))
 })
+
+test_that("the generated script carries the disclaimer", {
+  # The script is the artefact most likely to be read detached from the
+  # application, by someone who never saw the banner, so the header is asserted
+  # rather than left to be noticed if it goes missing.
+  code <- reproduce_code("growth.csv", list(response = "weight"))
+
+  expect_match(code[1], "^# ")
+  expect_true(any(grepl("generative AI", code)))
+  expect_true(any(grepl("testing and validation", code)))
+  expect_true(any(grepl("must not be used", code)))
+  # Every disclaimer line must be commented, or the script will not parse.
+  header <- code[seq_len(length(disclaimer_lines()))]
+  expect_true(all(grepl("^#", header)))
+  expect_silent(parse(text = paste(code, collapse = "\n")))
+})
