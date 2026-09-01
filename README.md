@@ -5,7 +5,7 @@
 [![license](https://img.shields.io/badge/license-GPL%20%28%3E=%203%29-lightgrey.svg)](https://choosealicense.com/)
 <!-- badges: end -->
 
-A point-and-click interface to [`toxstats`](https://github.com/beckyfisher/toxstats),
+A point-and-click interface to [`toxstats`](https://github.com/open-AIMS/toxstats),
 which implements the US EPA Whole Effluent Toxicity statistical methods.
 
 ```r
@@ -82,8 +82,8 @@ devtools::test()
 if (!requireNamespace("remotes")) {
   install.packages("remotes")
 }
-remotes::install_github("beckyfisher/toxstats")
-remotes::install_github("beckyfisher/shinytoxstats")
+remotes::install_github("open-AIMS/toxstats")
+remotes::install_github("open-AIMS/shinytoxstats")
 ```
 
 ## Fidelity

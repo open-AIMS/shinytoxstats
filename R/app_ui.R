@@ -164,7 +164,7 @@ app_ui <- function() {
       shiny::tags$a(
         shiny::icon("book"),
         "Method notes",
-        href = "https://github.com/beckyfisher/toxstats",
+        href = "https://open-aims.github.io/toxstats",
         target = "_blank"
       )
     )

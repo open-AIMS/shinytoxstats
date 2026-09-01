@@ -14,9 +14,9 @@ Description: A Shiny application providing a point-and-click interface to the
     concentration-response plot, and can be exported as a report, a
     spreadsheet, or the R code that reproduces the analysis.
 License: GPL (>= 3)
-URL: https://beckyfisher.github.io/shinytoxstats,
-    https://github.com/beckyfisher/shinytoxstats
-BugReports: https://github.com/beckyfisher/shinytoxstats/issues
+URL: https://open-aims.github.io/shinytoxstats,
+    https://github.com/open-AIMS/shinytoxstats
+BugReports: https://github.com/open-AIMS/shinytoxstats/issues
 Depends:
     R (>= 4.1)
 Imports:
