@@ -35,7 +35,7 @@ Suggests:
     testthat (>= 3.0.0),
     withr
 Remotes:
-    beckyfisher/toxstats
+    open-AIMS/toxstats
 Config/roxygen2/version: 8.0.0.9000
 Config/testthat/edition: 3
 Encoding: UTF-8
