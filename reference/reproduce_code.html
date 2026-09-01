@@ -67,12 +67,13 @@ generated <code>read</code> call. A string.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This is the feature that makes a point-and-click interface acceptable for
-regulatory work. A result that can only be obtained by clicking through an
-application is not reproducible, and a laboratory cannot put it in a
-submission and expect a reviewer to be able to check it. A result
-accompanied by four lines of R can be rerun by anyone, years later, without
-the application.</p>
+    <p>A result that can only be obtained by clicking through an application is
+not reproducible: nobody can check it, and nobody can rerun it once the
+application has moved on. A result accompanied by four lines of R can be
+rerun by anyone, years later, without the application.</p>
+<p>The script carries the package disclaimer as a header comment, because it
+is the artefact most likely to be read by someone who never saw the
+interface.</p>
 <p>Only arguments that differ from the defaults are written out, so the code
 stays readable and shows the choices actually made rather than restating
 every default.</p>
@@ -87,6 +88,16 @@ every default.</p>
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
 <span class="r-in"><span>  sep <span class="op">=</span> <span class="st">"\n"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # This analysis was produced by shinytoxstats and toxstats, which were</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # written with generative AI and are for testing and validation purposes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # only. It must not be used to derive toxicity estimates for regulatory</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # submission, compliance reporting, or any other official purpose.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> #</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # The methods are checked against the worked examples printed in the EPA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # method manuals, which is not independent verification and does not cover</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # the paths no manual exercises. For a result that will be relied on, use</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # software your regulator accepts.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> library(toxstats)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data &lt;- read.csv("growth.csv")</span>
